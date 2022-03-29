@@ -35,7 +35,6 @@ public class UsuariosController {
 	@GetMapping()
 		public List<Usuario> getPedidos() {
 		List<Usuario> usuarios = usuarioRepository.findAll();
-		usuarioRepository.close();
 		return usuarios;
 				
 		
@@ -43,8 +42,7 @@ public class UsuariosController {
 
 	@GetMapping("/{status}")
 	public List<Usuario> getPedidosByStatus(@PathVariable("status") String status, Model model) {
-		List<Usuario> usuarios = usuarioRepository.findByStatus(StatusUsuario.valueOf(status.toUpperCase()));
-		usuarioRepository.close();
+		List<Usuario> usuarios = usuarioRepository.findByStatus(StatusUsuario.valueOf(status.toUpperCase()));;
 		return usuarios;
 	}
 
