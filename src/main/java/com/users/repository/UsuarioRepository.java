@@ -14,5 +14,4 @@ import com.users.model.StatusUsuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 
 	List<Usuario> findByStatus(StatusUsuario status);
-	void close();
 }
