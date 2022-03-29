@@ -33,14 +33,19 @@ public class UsuariosController {
 	private UsuarioRepository usuarioRepository;
 
 	@GetMapping()
-	public List<Usuario> getPedidos() {
-		return usuarioRepository.findAll();
+		public List<Usuario> getPedidos() {
+		List<Usuario> usuarios = usuarioRepository.findAll();
+		usuarioRepository.close();
+		return usuarios;
+				
+		
 	}
 
 	@GetMapping("/{status}")
 	public List<Usuario> getPedidosByStatus(@PathVariable("status") String status, Model model) {
-
-		return usuarioRepository.findByStatus(StatusUsuario.valueOf(status.toUpperCase()));
+		List<Usuario> usuarios = usuarioRepository.findByStatus(StatusUsuario.valueOf(status.toUpperCase()));
+		usuarioRepository.close();
+		return usuarios;
 	}
 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
